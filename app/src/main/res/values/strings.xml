@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">SAEL</string>
+
+    <string name="login_page_text">Hey there,</string>
+    <string name="login_page_text1">Welcome to Star Academy for English Learning</string>
+
+    <string name="login_page_reg_text">Don\'t have an account?</string>
+    <string name="login_page_reg_text1">Register Here</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="start_text_page">To provide quality English language instruction to all individuals who have
+        chosen English as their medium of communication for academic or professional pursuits.</string>
+
+</resources>
