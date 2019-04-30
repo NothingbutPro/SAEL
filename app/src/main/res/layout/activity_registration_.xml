@@ -155,6 +155,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:hint="Mobile"
+                    android:maxLength="10"
                     android:background="#fff"
                     tools:layout_editor_absoluteX="16dp"
                     tools:layout_editor_absoluteY="214dp" />

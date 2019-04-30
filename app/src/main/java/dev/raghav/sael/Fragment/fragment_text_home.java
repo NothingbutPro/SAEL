@@ -41,7 +41,7 @@ public class fragment_text_home extends Fragment {
 //                Intent intent=new Intent(Login_Activity.this, Registration_Activity.class);
 //                startActivity(intent);
 
-                Fragment view_creat=new fragment_start1();
+                Fragment view_creat=new fragment_level();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.content_frame,view_creat);

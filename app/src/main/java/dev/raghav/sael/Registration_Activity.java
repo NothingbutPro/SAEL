@@ -28,6 +28,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 import dev.raghav.sael.Connectivity.Connectivity;
 import dev.raghav.sael.Connectivity.SessionManager;
+import dev.raghav.sael.Connectivity.SharedPref;
 
 public class Registration_Activity extends AppCompatActivity {
 
@@ -36,6 +37,7 @@ public class Registration_Activity extends AppCompatActivity {
     String Et_Name,Et_Email,Et_Mobile,Et_Pass;
 
     SessionManager manager;
+     String user_id,name,email;
 
 
     @Override
@@ -153,18 +155,20 @@ public class Registration_Activity extends AppCompatActivity {
                     JSONObject object = new JSONObject(result);
                     String res = object.getString("responce");
 
+                    if (res.equals("true")) {
+
                     JSONObject data= new JSONObject(result).getJSONObject("userdata");
-                    String user_id=data.getString("user_id");
-                    String name=data.getString("name");
-                    String email=data.getString("email");
+                     user_id=data.getString("user_id");
+                     name=data.getString("name");
+                     email=data.getString("email");
                     String mobile=data.getString("mobile");
                     String show_password=data.getString("show_password");
 
 
-                   // AppPreference.setFirstname(Registration_Activity.this,firstname);
+                    SharedPref.setUserid(Registration_Activity.this,user_id);
+                    SharedPref.setFirstname(Registration_Activity.this,name);
+                    SharedPref.setEmail(Registration_Activity.this,email);
 
-
-                    if (res.equals("true")) {
                         manager.setLogin(true);
 
                         Intent intent = new Intent(Registration_Activity.this, Main2Activity.class);
@@ -173,7 +177,7 @@ public class Registration_Activity extends AppCompatActivity {
 
                         Toast.makeText(Registration_Activity.this, "Registration Success", Toast.LENGTH_SHORT).show();
                     } else {
-                        String error=data.getString("error");
+                        String error = object.getString("error");
                         Toast.makeText(Registration_Activity.this, ""+error, Toast.LENGTH_SHORT).show();
 
                         Toast.makeText(Registration_Activity.this, "Some Problem, Please Try Again", Toast.LENGTH_SHORT).show();

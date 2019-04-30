@@ -20,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
@@ -27,14 +29,26 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.Iterator;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import dev.raghav.sael.Connectivity.Connectivity;
+import dev.raghav.sael.Connectivity.SharedPref;
 import dev.raghav.sael.Connectivity.Utilities;
 import dev.raghav.sael.Connectivity.Utility;
 
@@ -50,6 +64,7 @@ public class Profile_Update extends AppCompatActivity {
     File destination;
 
     ProgressDialog dialog;
+//     String user_id,name,email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +79,14 @@ public class Profile_Update extends AppCompatActivity {
         et_name=findViewById(R.id.et_fullname);
         et_mobile=findViewById(R.id.et_mobile);
         et_pass=findViewById(R.id.et_pw);
+
+        if (Connectivity.isNetworkAvailable(Profile_Update.this)){
+                new Profile_Get_Excute().execute();
+
+        }else {
+            Toast.makeText(Profile_Update.this, "Please Check Internet", Toast.LENGTH_SHORT).show();
+        }
+
 
         button_Update.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -234,17 +257,18 @@ public class Profile_Update extends AppCompatActivity {
             try {
                 org.apache.http.entity.mime.MultipartEntity entity = new MultipartEntity(
                         HttpMultipartMode.BROWSER_COMPATIBLE);
-               // String id= AppPreference.getUserid(MainLocation.this);
+               String id= SharedPref.getUserid(Profile_Update.this);
                if(destination !=null)
                 {
-                    entity.addPart("file", new FileBody(destination));
+                    entity.addPart("image", new FileBody(destination));
                 }
                 entity.addPart("name", new StringBody(Et_Name));
                 entity.addPart("mobile",new StringBody(Et_Mobile));
                 entity.addPart("password",new StringBody(Et_Pass));
                 entity.addPart("email",new StringBody(Et_Email));
+                entity.addPart("user_id",new StringBody(id));
 
-                result = Utilities.postEntityAndFindJson("http://ihisaab.in/vets/Api/*****", entity);
+                result = Utilities.postEntityAndFindJson("https://jntrcpl.com/staracademy/Api/profile_update", entity);
 
                 return result;
 
@@ -294,5 +318,142 @@ public class Profile_Update extends AppCompatActivity {
             }
 
         }
+    }
+
+    private class Profile_Get_Excute extends AsyncTask<String, Integer, String> {
+        ProgressDialog dialog;
+
+        protected void onPreExecute() {
+            dialog = new ProgressDialog(Profile_Update.this);
+            dialog.setMessage("Processing...");
+            dialog.show();
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                String id= SharedPref.getUserid(Profile_Update.this);
+                URL url = new URL("https://jntrcpl.com/staracademy/Api/user_detail");
+
+                JSONObject postDataParams = new JSONObject();
+                postDataParams.put("user_id",id);
+
+                Log.e("postDataParams", postDataParams.toString());
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(15000 /* milliseconds*/);
+                conn.setConnectTimeout(15000  /*milliseconds*/);
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(getPostDataString(postDataParams));
+
+                writer.flush();
+                writer.close();
+                os.close();
+                int responseCode = conn.getResponseCode();
+
+                if (responseCode == HttpsURLConnection.HTTP_OK) {
+
+                    BufferedReader r = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    StringBuilder result = new StringBuilder();
+                    String line;
+                    while ((line = r.readLine()) != null) {
+                        result.append(line);
+                    }
+                    r.close();
+                    return result.toString();
+
+                } else {
+                    return new String("false : " + responseCode);
+                }
+            }
+            catch (Exception e) {
+                return new String("Exception: " + e.getMessage());
+            }
+
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            if (result != null) {
+                dialog.dismiss();
+
+                try {
+                    //  Toast.makeText(LoginActivity.this, "result is" + result, Toast.LENGTH_SHORT).show();
+
+
+                    JSONObject object = new JSONObject(result);
+                    String res = object.getString("responce");
+
+                    if (res.equals("true")) {
+
+                        JSONObject data= new JSONObject(result).getJSONObject("userdata");
+                        String user_id=data.getString("user_id");
+                        String name=data.getString("name");
+                        String email=data.getString("email");
+                        String mobile=data.getString("mobile");
+                        String show_password=data.getString("show_password");
+                        String image=data.getString("image");
+
+                        et_name.setText(name);
+                        et_email.setText(email);
+                        et_mobile.setText(mobile);
+                        et_pass.setText(show_password);
+
+                        if (image!=null){
+                            Picasso.get()
+                    .load("https://jntrcpl.com/staracademy/uploads/"+image)
+                    .into(Profile_Update.this.profile_image);
+                        }
+
+
+                        SharedPref.setUserid(Profile_Update.this,user_id);
+                        SharedPref.setFirstname(Profile_Update.this,name);
+                        SharedPref.setEmail(Profile_Update.this,email);
+                        SharedPref.setProfileImage(Profile_Update.this,image);
+
+
+                    } else {
+                        Toast.makeText(Profile_Update.this, "Some Problem error", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    }
+
+
+    public String getPostDataString(JSONObject params) throws Exception {
+
+        StringBuilder result = new StringBuilder();
+        boolean first = true;
+
+        Iterator<String> itr = params.keys();
+
+        while (itr.hasNext()) {
+
+            String key = itr.next();
+            Object value = params.get(key);
+
+            if (first)
+                first = false;
+            else
+                result.append("&");
+
+            result.append(URLEncoder.encode(key, "UTF-8"));
+            result.append("=");
+            result.append(URLEncoder.encode(value.toString(), "UTF-8"));
+
+        }
+        return result.toString();
     }
 }

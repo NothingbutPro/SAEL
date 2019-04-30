@@ -1,8 +1,12 @@
 package dev.raghav.sael;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,12 +27,15 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
 import dev.raghav.sael.Connectivity.Connectivity;
 import dev.raghav.sael.Connectivity.SessionManager;
+import dev.raghav.sael.Connectivity.SharedPref;
 
 public class Login_Activity extends AppCompatActivity {
 
@@ -39,6 +46,8 @@ public class Login_Activity extends AppCompatActivity {
    String Et_Email, Et_Password;
 
     SessionManager manager;
+    public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
+     String user_id,name,email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +63,11 @@ public class Login_Activity extends AppCompatActivity {
         forget_pw=findViewById(R.id.tv_forgot);
 
         new_reg=findViewById(R.id.new_reg);
+
+        if(checkAndRequestPermissions()) {
+            // carry on the normal flow, as the case of  permissions  granted.
+        }
+
 
         button_signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +112,33 @@ public class Login_Activity extends AppCompatActivity {
             }
         });
     }
+//*******************************************************************
+private  boolean checkAndRequestPermissions() {
+    int permissionCamara = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+    int permissionStorage = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    int permissionStorage1 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+    //int permissionPhone = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
 
+    List<String> listPermissionsNeeded = new ArrayList<>();
+    if (permissionCamara != PackageManager.PERMISSION_GRANTED) {
+        listPermissionsNeeded.add(Manifest.permission.CAMERA);
+    }
+    if (permissionStorage != PackageManager.PERMISSION_GRANTED) {
+        listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    }
+    if (permissionStorage1 != PackageManager.PERMISSION_GRANTED) {
+        listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+    }
+//    if (permissionPhone != PackageManager.PERMISSION_GRANTED) {
+//        listPermissionsNeeded.add(Manifest.permission.READ_PHONE_STATE);
+//    }
+    if (!listPermissionsNeeded.isEmpty()) {
+        ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]),REQUEST_ID_MULTIPLE_PERMISSIONS);
+        return false;
+    }
+    return true;
+}
+//**********************************************************************
     private class LoginExcute extends AsyncTask<String, Integer, String> {
         ProgressDialog dialog;
 
@@ -173,14 +213,16 @@ public class Login_Activity extends AppCompatActivity {
                     if (res.equals("true")) {
 
                     JSONObject data= new JSONObject(result).getJSONObject("userdata");
-                   String user_id=data.getString("user_id");
-                    String name=data.getString("name");
-                    String email=data.getString("email");
+                    user_id=data.getString("user_id");
+                    name=data.getString("name");
+                     email=data.getString("email");
                     String mobile=data.getString("mobile");
                     String show_password=data.getString("show_password");
 
 
-                   // AppPreference.setFirstname(Login_Activity.this,firstname);
+                        SharedPref.setUserid(Login_Activity.this,user_id);
+                        SharedPref.setFirstname(Login_Activity.this,name);
+                        SharedPref.setEmail(Login_Activity.this,email);
 
                         manager.setLogin(true);
 
@@ -188,6 +230,7 @@ public class Login_Activity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                         Toast.makeText(Login_Activity.this, "login success", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login_Activity.this, "ff" +SharedPref.getFirstname(Login_Activity.this), Toast.LENGTH_SHORT).show();
 
                     } else {
                         Toast.makeText(Login_Activity.this, "Invalid details login error", Toast.LENGTH_SHORT).show();
