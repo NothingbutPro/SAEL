@@ -27,65 +27,51 @@ import java.util.Iterator;
 import javax.net.ssl.HttpsURLConnection;
 
 import dev.raghav.sael.Connectivity.Connectivity;
-import dev.raghav.sael.Connectivity.SessionManager;
 
-public class Registration_Activity extends AppCompatActivity {
+public class Forgot_Password extends AppCompatActivity {
 
-    Button button_register;
-    EditText et_name,et_email,et_mobile,et_pass;
-    String Et_Name,Et_Email,Et_Mobile,Et_Pass;
-
-    SessionManager manager;
-
+    EditText et_forget;
+    String Et_Forget;
+    Button btn_forget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration_);
-
+        setContentView(R.layout.activity_forgot__password);
         getSupportActionBar().hide();
-        manager=new SessionManager(Registration_Activity.this);
 
-        button_register=findViewById(R.id.button_signin);
-        et_email=findViewById(R.id.et_email);
-        et_name=findViewById(R.id.et_fullname);
-        et_mobile=findViewById(R.id.et_mobile);
-        et_pass=findViewById(R.id.et_pw);
+        et_forget=findViewById(R.id.forget_email);
+        btn_forget=findViewById(R.id.button_forget);
 
 
-        button_register.setOnClickListener(new View.OnClickListener() {
+        btn_forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent=new Intent(Registration_Activity.this,Main2Activity.class);
-//                startActivity(intent);
+                Et_Forget=et_forget.getText().toString();
 
-                Et_Name=et_name.getText().toString();
-                Et_Pass=et_pass.getText().toString();
-                Et_Email=et_email.getText().toString();
-                Et_Mobile=et_mobile.getText().toString();
-                if (Connectivity.isNetworkAvailable(Registration_Activity.this)){
+                if (Connectivity.isNetworkAvailable(Forgot_Password.this)){
 
-                    if (!Et_Name.isEmpty() && !Et_Mobile.isEmpty() && !Et_Pass.isEmpty() && !Et_Email.isEmpty()){
-                        new RegistrationExcute().execute();
+                    if (!Et_Forget.isEmpty()){
+                        new ForgetExcute().execute();
                     }else {
-                        Toast.makeText(Registration_Activity.this, "All Field Are Required", Toast.LENGTH_SHORT).show();
+                        if (Et_Forget.isEmpty()){
+                            et_forget.setError("Please Enter Email or Mobile");
+                        }
                     }
+
                 }else {
-                    Toast.makeText(Registration_Activity.this, "Please Check Internet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Forgot_Password.this, "Please Check Internet", Toast.LENGTH_SHORT).show();
                 }
-
-
-
 
             }
         });
     }
 
-    private class RegistrationExcute extends AsyncTask<String, Integer, String> {
+    private class ForgetExcute extends AsyncTask<String, Integer, String> {
         ProgressDialog dialog;
 
         protected void onPreExecute() {
-            dialog = new ProgressDialog(Registration_Activity.this);
+            dialog = new ProgressDialog(Forgot_Password.this);
             dialog.setMessage("Processing...");
             dialog.show();
 
@@ -95,13 +81,10 @@ public class Registration_Activity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             try {
 
-                URL url = new URL("https://jntrcpl.com/staracademy/Api/registration");
+                URL url = new URL("https://jntrcpl.com/staracademy/Api/forget_password");
 
                 JSONObject postDataParams = new JSONObject();
-                postDataParams.put("name",Et_Name);
-                postDataParams.put("mobile",Et_Mobile);
-                postDataParams.put("password",Et_Pass);
-                postDataParams.put("email",Et_Email);
+                postDataParams.put("email",Et_Forget);
 
                 Log.e("postDataParams", postDataParams.toString());
 
@@ -150,33 +133,19 @@ public class Registration_Activity extends AppCompatActivity {
                 try {
                     //  Toast.makeText(LoginActivity.this, "result is" + result, Toast.LENGTH_SHORT).show();
 
-                    JSONObject object = new JSONObject(result);
-                    String res = object.getString("responce");
 
-                    JSONObject data= new JSONObject(result).getJSONObject("userdata");
-                    String user_id=data.getString("user_id");
-                    String name=data.getString("name");
-                    String email=data.getString("email");
-                    String mobile=data.getString("mobile");
-                    String show_password=data.getString("show_password");
+                    JSONObject responce = new JSONObject(result);
+                    String res = responce.getString("responce");
 
 
-                   // AppPreference.setFirstname(Registration_Activity.this,firstname);
-
-
-                    if (res.equals("true")) {
-                        manager.setLogin(true);
-
-                        Intent intent = new Intent(Registration_Activity.this, Main2Activity.class);
+                    if (res.equalsIgnoreCase("true")) {
+                        Intent intent = new Intent(Forgot_Password.this, Login_Activity.class);
                         startActivity(intent);
                         finish();
+                        Toast.makeText(Forgot_Password.this, "Password send your email Successfully", Toast.LENGTH_LONG).show();
 
-                        Toast.makeText(Registration_Activity.this, "Registration Success", Toast.LENGTH_SHORT).show();
                     } else {
-                        String error=data.getString("error");
-                        Toast.makeText(Registration_Activity.this, ""+error, Toast.LENGTH_SHORT).show();
-
-                        Toast.makeText(Registration_Activity.this, "Some Problem, Please Try Again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Forgot_Password.this, "Invalid details error", Toast.LENGTH_SHORT).show();
                     }
 
 

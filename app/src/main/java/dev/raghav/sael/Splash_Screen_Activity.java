@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import dev.raghav.sael.Connectivity.SessionManager;
+
 public class Splash_Screen_Activity extends AppCompatActivity {
 
-  //  SessionManager manager;
+    SessionManager manager;
 
     // Splash screen timer
     private static int SPLASH_TIME_OUT = 2000;
@@ -28,7 +30,7 @@ public class Splash_Screen_Activity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-       // manager =new SessionManager(SplashActivity.this);
+        manager =new SessionManager(Splash_Screen_Activity.this);
 
 
         new Handler().postDelayed(new Runnable() {
@@ -38,27 +40,19 @@ public class Splash_Screen_Activity extends AppCompatActivity {
                 // This method will be executed once the timer is over
                 // Start your app main activity
                 try{
-                    Intent intent = new Intent(Splash_Screen_Activity.this, Login_Activity.class);
-                    startActivity(intent);
-                    finish();
+                    if (manager.isLoggedIn()) {
 
-//                    if (manager.isLoggedIn()) {
-//
-//                        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-//                        startActivity(intent);
-//                        SplashActivity.this.finish();
-//                    } else {
-//                        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-//                        startActivity(intent);
-//                        SplashActivity.this.finish();
-//                    }
+                        Intent intent = new Intent(Splash_Screen_Activity.this, Main2Activity.class);
+                        startActivity(intent);
+                       finish();
+                    } else {
+                        Intent intent = new Intent(Splash_Screen_Activity.this, Login_Activity.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }catch (Exception e) {
                 }
-//                    Intent i = new Intent(SplashActivity.this, LoginActivity.class);
-//                    startActivity(i);
 
-                // close this activity
-//                    finish();
             }
         }, SPLASH_TIME_OUT);
 

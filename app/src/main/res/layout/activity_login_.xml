@@ -99,7 +99,7 @@
 
                 <EditText
                     android:background="#fff"
-                    android:id="@+id/editText"
+                    android:id="@+id/edit_email"
                     android:layout_weight="0.1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
                 <!--android:layout_height="wrap_content"-->
                 <!--app:passwordToggleEnabled="true">-->
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/edit_pw"
                     android:layout_weight="0.1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
 
         >
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tv_forgot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Forgot Password ?"
