@@ -70,7 +70,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Question 1."
+            android:text="Question:"
             android:textColor="@color/colorPrimary"
             />
 
@@ -86,9 +86,10 @@
 
             >
             <TextView
+                android:id="@+id/tv_question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="मैं बाज़ार (Market) जाता हूँ।"
+                android:text=""
                 android:textColor="@color/colorPrimary"
                 />
 
@@ -152,7 +153,7 @@
                 android:id="@+id/tv_answer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Answer:- I go to market."
+                android:text="Answer:-"
                 android:textSize="18dp"
                 android:textColor="#1B9C20"
                 />

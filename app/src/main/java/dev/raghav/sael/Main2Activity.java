@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -24,6 +26,7 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 import dev.raghav.sael.Connectivity.SessionManager;
 import dev.raghav.sael.Connectivity.SharedPref;
+import dev.raghav.sael.Fragment.fragment_level;
 import dev.raghav.sael.Fragment.fragment_text_home;
 
 public class Main2Activity extends AppCompatActivity
@@ -72,7 +75,7 @@ public class Main2Activity extends AppCompatActivity
 //
 //        Nav_text_name.setText(SharedPref.getFirstname(Main2Activity.this));
 //        Nav_text_email.setText(SharedPref.getEmail(Main2Activity.this));
-
+//
 //        if (SharedPref.getProfileImage(Main2Activity.this).length()!=0)
 //        {
 ////            Picasso.get()
@@ -126,8 +129,17 @@ public class Main2Activity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
+            FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+            tx.replace(R.id.content_frame, new fragment_text_home());
+            tx.commit();
+
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
+
+            FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+            tx.replace(R.id.content_frame, new fragment_level());
+            tx.commit();
+
 
         } else if (id == R.id.nav_slideshow) {
 
@@ -176,4 +188,5 @@ public class Main2Activity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
