@@ -26,6 +26,7 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 import dev.raghav.sael.Connectivity.SessionManager;
 import dev.raghav.sael.Connectivity.SharedPref;
+import dev.raghav.sael.Fragment.Support_fraggment;
 import dev.raghav.sael.Fragment.fragment_level;
 import dev.raghav.sael.Fragment.fragment_text_home;
 
@@ -145,6 +146,9 @@ public class Main2Activity extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
+            FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+            tx.replace(R.id.content_frame, new Support_fraggment());
+            tx.commit();
 
         } else if (id == R.id.nav_share) {
 
@@ -172,6 +176,7 @@ public class Main2Activity extends AppCompatActivity
                     startActivity(intent);
                     //finish();
                     manager.logoutUser();
+                   // SharedPref.setProfileImage(Main2Activity.this,"");
                     finish();
                 }
             });

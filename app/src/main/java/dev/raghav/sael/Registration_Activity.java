@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
+import android.text.method.SingleLineTransformationMethod;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,6 +57,39 @@ public class Registration_Activity extends AppCompatActivity {
         et_mobile=findViewById(R.id.et_mobile);
         et_pass=findViewById(R.id.et_pw);
 
+        //*************************************************
+        et_pass.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (et_pass.getRight() - et_pass.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        // your action here
+
+
+                        if (et_pass.getTransformationMethod().getClass().getSimpleName() .equals("PasswordTransformationMethod")) {
+                            et_pass.setTransformationMethod(new SingleLineTransformationMethod());
+                        }
+                        else {
+                            et_pass.setTransformationMethod(new PasswordTransformationMethod());
+                        }
+
+                        et_pass.setSelection(et_pass.getText().length());
+
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+
+        //************************************************
+
 
         button_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +101,11 @@ public class Registration_Activity extends AppCompatActivity {
                 Et_Pass=et_pass.getText().toString();
                 Et_Email=et_email.getText().toString();
                 Et_Mobile=et_mobile.getText().toString();
+
+              // isValidEmail(et_email.getText().toString());
+
                 if (Connectivity.isNetworkAvailable(Registration_Activity.this)){
+
 
                     if (!Et_Name.isEmpty() && !Et_Mobile.isEmpty() && !Et_Pass.isEmpty() && !Et_Email.isEmpty()){
                         new RegistrationExcute().execute();
@@ -81,6 +121,14 @@ public class Registration_Activity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        if (target == null) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
     }
 
     private class RegistrationExcute extends AsyncTask<String, Integer, String> {

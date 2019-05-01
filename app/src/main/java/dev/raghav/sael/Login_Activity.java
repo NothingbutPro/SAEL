@@ -1,6 +1,7 @@
 package dev.raghav.sael;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,9 +10,13 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
+import android.text.method.SingleLineTransformationMethod;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,9 +32,12 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -67,7 +75,40 @@ public class Login_Activity extends AppCompatActivity {
         if(checkAndRequestPermissions()) {
             // carry on the normal flow, as the case of  permissions  granted.
         }
+        //********************************************************
 
+        et_password.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (et_password.getRight() - et_password.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        // your action here
+
+
+                        if (et_password.getTransformationMethod().getClass().getSimpleName() .equals("PasswordTransformationMethod")) {
+                            et_password.setTransformationMethod(new SingleLineTransformationMethod());
+                        }
+                        else {
+                            et_password.setTransformationMethod(new PasswordTransformationMethod());
+                        }
+
+                        et_password.setSelection(et_password.getText().length());
+
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+
+
+//***********************************************************
 
         button_signin.setOnClickListener(new View.OnClickListener() {
             @Override

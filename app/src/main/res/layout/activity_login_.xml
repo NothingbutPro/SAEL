@@ -140,6 +140,7 @@
                     android:inputType="textPassword"
                     android:hint="Password"
                     android:background="#fff"
+                    android:drawableRight="@drawable/toogle"
                     tools:layout_editor_absoluteX="16dp"
                     tools:layout_editor_absoluteY="214dp" />
                 <!--</android.support.design.widget.TextInputLayout>-->

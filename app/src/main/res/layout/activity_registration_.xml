@@ -186,6 +186,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:hint="Password"
+                    android:drawableRight="@drawable/toogle"
                     tools:layout_editor_absoluteX="16dp"
                     tools:layout_editor_absoluteY="138dp" />
 
