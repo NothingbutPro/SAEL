@@ -60,6 +60,21 @@ public class fragment_level extends Fragment {
    recycler_level=view.findViewById(R.id.level_recycler);
 
         if (Connectivity.isNetworkAvailable(view.getContext())){
+
+            try{
+
+                if(LevelList.size() !=0)
+                {
+                    LevelList.clear();
+
+                    recycler_level.setAdapter(null);
+                    levelAdapter.notifyDataSetChanged();
+                }
+            }catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
             new Level_Get_Excute().execute();
 
         }else {

@@ -409,6 +409,10 @@ public class Profile_Update extends AppCompatActivity {
                             Picasso.get()
                     .load("https://jntrcpl.com/staracademy/uploads/"+image)
                     .into(Profile_Update.this.profile_image);
+                        }else {
+                            Picasso.get()
+                                    .load(R.drawable.prof)
+                                    .into(Profile_Update.this.profile_image);
                         }
 
 

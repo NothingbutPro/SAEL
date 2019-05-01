@@ -107,7 +107,7 @@
 
             <EditText
                 android:background="#fff"
-                android:id="@+id/editText"
+                android:id="@+id/et_text"
                 android:layout_weight="0.1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -34,7 +34,7 @@ public class Main2Activity extends AppCompatActivity
     SessionManager manager;
 
     TextView Nav_text_name,Nav_text_email;
-    ImageView Profile_img;
+    CircleImageView Profile_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,24 +69,25 @@ public class Main2Activity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
 
-//        Nav_text_name=findViewById(R.id.nav_hedder_name);
-//        Nav_text_email=findViewById(R.id.nav_hedder_email);
-//        Profile_img=findViewById(R.id.profile_image12);
-//
-//        Nav_text_name.setText(SharedPref.getFirstname(Main2Activity.this));
-//        Nav_text_email.setText(SharedPref.getEmail(Main2Activity.this));
-//
-//        if (SharedPref.getProfileImage(Main2Activity.this).length()!=0)
-//        {
-////            Picasso.get()
-////                    .load("https://jntrcpl.com/theoji/uploads/"+*****)
-////                    .into(Main2Activity.this.Profile_img);
-//        }
-//        else {
-//            Picasso.get()
-//                    .load(R.drawable.prof)
-//                    .into(Main2Activity.this.Profile_img);
-//        }
+        View headerView = navigationView.getHeaderView(0);
+        Nav_text_name=headerView.findViewById(R.id.nav_hedder_name);
+        Nav_text_email=headerView.findViewById(R.id.nav_hedder_email);
+        Profile_img=headerView.findViewById(R.id.profile_image12);
+
+        Nav_text_name.setText(SharedPref.getFirstname(Main2Activity.this));
+        Nav_text_email.setText(SharedPref.getEmail(Main2Activity.this));
+
+        if (SharedPref.getProfileImage(Main2Activity.this).length()!=0)
+        {
+            Picasso.get()
+                    .load("https://jntrcpl.com/staracademy/uploads/"+SharedPref.getProfileImage(Main2Activity.this))
+                    .into(Main2Activity.this.Profile_img);
+        }
+        else {
+            Picasso.get()
+                    .load(R.drawable.prof)
+                    .into(Main2Activity.this.Profile_img);
+        }
 
     }
 
@@ -150,7 +151,7 @@ public class Main2Activity extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             //            if (Connectivity.isNetworkAvailable(Main2Activity.this)){
 
-            final AlertDialog.Builder dialog = new AlertDialog.Builder(Main2Activity.this).setTitle("The Oji")
+            final AlertDialog.Builder dialog = new AlertDialog.Builder(Main2Activity.this).setTitle("Learning English")
                     .setMessage("Are you sure, you want to logout this app");
 
             dialog.setNegativeButton("no", new DialogInterface.OnClickListener() {

@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ public class fragment_start1 extends Fragment {
     Button button_check;
     TextView tv_answer,tv_question;
      String LEVEL_ID;
+     EditText et_text;
     ArrayList<QuestionListModel> QuestionList=new ArrayList<>();
 
     public static int intNext=0;
@@ -73,6 +75,7 @@ public class fragment_start1 extends Fragment {
         button_check=view.findViewById(R.id.button_check);
         tv_answer=view.findViewById(R.id.tv_answer);
         tv_question=view.findViewById(R.id.tv_question);
+        et_text=view.findViewById(R.id.et_text);
 
         Bundle b = getArguments();
         try {
@@ -111,7 +114,7 @@ public class fragment_start1 extends Fragment {
                  FragmentManager fragmentManager = getFragmentManager();
                  FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                  fragmentTransaction.replace(R.id.content_frame,view_creat);
-                 fragmentTransaction.addToBackStack(null);
+                 //fragmentTransaction.addToBackStack(null);
                  fragmentTransaction.commit();
              }else {
                  intNext++;
@@ -119,7 +122,7 @@ public class fragment_start1 extends Fragment {
                  FragmentManager fragmentManager = getFragmentManager();
                  FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                  fragmentTransaction.replace(R.id.content_frame,view_creat);
-                 fragmentTransaction.addToBackStack(null);
+                // fragmentTransaction.addToBackStack(null);
                  fragmentTransaction.commit();
              }
 
@@ -130,7 +133,12 @@ public class fragment_start1 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                tv_answer.setVisibility(View.VISIBLE);
+                if (!et_text.getText().toString().isEmpty()){
+                    tv_answer.setVisibility(View.VISIBLE);
+                }else {
+                    et_text.setError("Please type here");
+                }
+
 
             }
         });

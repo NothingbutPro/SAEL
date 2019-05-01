@@ -75,7 +75,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -85,10 +84,10 @@
                 android:gravity="bottom"
                 >
                 <Button
-                    android:id="@+id/button_start"
+                    android:id="@+id/button_homepage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Pay for next level"
+                    android:text="Go to Home Page"
                     android:textAllCaps="false"
                     android:textAlignment="center"
                     android:background="@drawable/btn_shape"
