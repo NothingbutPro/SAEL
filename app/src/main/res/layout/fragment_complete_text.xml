@@ -68,7 +68,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Start continue learning make payment after level 2, We will more Improve your ENGLISH."
+                    android:text="@string/complete_text"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
                     />

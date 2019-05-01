@@ -76,6 +76,7 @@
             android:layout_height="wrap_content"
             android:text="Start Learning"
             android:textAlignment="center"
+            android:textAllCaps="false"
             android:background="@drawable/btn_shape"
             android:textColor="#fff"
             android:layout_marginRight="15dp"
