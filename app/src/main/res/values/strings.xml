@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SAEL</string>
+    <string name="app_name">Star Academy</string>
 
     <string name="login_page_text">Hey there,</string>
     <string name="login_page_text1">Welcome to Star Academy for English Learning</string>

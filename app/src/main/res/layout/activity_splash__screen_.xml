@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#9C27B0"
+    android:background="#FFF"
     style="@style/AppTheme1"
 
     android:orientation="vertical"
@@ -24,7 +24,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
         android:scaleType="fitXY"
-        android:src="@drawable/starlogo" />
+        android:src="@drawable/logo32" />
     <!--</LinearLayout>-->
 
     <!--<LinearLayout-->

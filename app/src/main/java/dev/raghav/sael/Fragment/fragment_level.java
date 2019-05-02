@@ -140,7 +140,7 @@ public class fragment_level extends Fragment {
 
 
                             LevelList.add(i, new LevelListModel(masterdata_id,m_name,type));
-                            LevelHashMap.put(i , masterdata_id);
+                            LevelHashMap.put(i , m_name);
                         }
 
 

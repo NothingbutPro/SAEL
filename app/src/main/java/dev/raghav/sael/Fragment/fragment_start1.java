@@ -95,7 +95,7 @@ public class fragment_start1 extends Fragment {
 
         }
 
-        Toast.makeText(getContext(), "bb "+LEVEL_ID, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getContext(), "bb "+LEVEL_ID, Toast.LENGTH_SHORT).show();
 
         if (Connectivity.isNetworkAvailable(view.getContext())){
             new Question_Get_Excute().execute();

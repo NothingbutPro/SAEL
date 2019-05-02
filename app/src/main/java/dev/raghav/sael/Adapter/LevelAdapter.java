@@ -84,7 +84,7 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.ViewHolder> 
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
         final LevelListModel levelListModel = LevelList.get(position);
 
-        viewHolder.txt1.setText("Level "+levelListModel.getM_name());
+        viewHolder.txt1.setText("Exercise "+levelListModel.getM_name());
 
 
         viewHolder.cardeview.setTag(viewHolder);
