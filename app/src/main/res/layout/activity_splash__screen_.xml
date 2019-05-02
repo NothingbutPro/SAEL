@@ -24,7 +24,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
         android:scaleType="fitXY"
-        android:src="@drawable/logo32" />
+        android:src="@drawable/ssss" />
     <!--</LinearLayout>-->
 
     <!--<LinearLayout-->

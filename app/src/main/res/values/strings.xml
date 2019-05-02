@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Star Academy</string>
+    <string name="app_name1">Star Academy For Learning English</string>
 
     <string name="login_page_text">Hey there,</string>
-    <string name="login_page_text1">Welcome to Star Academy for English Learning</string>
+    <string name="login_page_text1">Welcome to Star Academy for Learning English</string>
 
     <string name="login_page_reg_text">Don\'t have an account?</string>
     <string name="login_page_reg_text1">Register Here</string>
