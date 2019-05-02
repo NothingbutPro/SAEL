@@ -16,7 +16,7 @@ import dev.raghav.sael.Registration_Activity;
 
 public class fragment_text_home extends Fragment {
 
-    Button btn_start;
+    Button btn_start, table_1,table_2;
 
     @Nullable
     @Override
@@ -34,14 +34,39 @@ public class fragment_text_home extends Fragment {
         getActivity().setTitle("Learning English");
 
         btn_start=view.findViewById(R.id.button_start);
+        table_1=view.findViewById(R.id.table_1);
+        table_2=view.findViewById(R.id.table_2);
 
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent=new Intent(Login_Activity.this, Registration_Activity.class);
-//                startActivity(intent);
-
                 Fragment view_creat=new fragment_level();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame,view_creat);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+
+            }
+        });
+        table_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment view_creat=new fragment_table1();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame,view_creat);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+
+            }
+        });
+ table_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment view_creat=new fragment_table2();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.content_frame,view_creat);
