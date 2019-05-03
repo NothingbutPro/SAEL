@@ -16,7 +16,7 @@
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/book"
-            android:title="Start Learning" />
+            android:title="Start Exercise" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"

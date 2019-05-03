@@ -3,6 +3,8 @@ package dev.raghav.sael;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,10 +22,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+import dev.raghav.sael.Connectivity.Connectivity;
 import dev.raghav.sael.Connectivity.SessionManager;
 import dev.raghav.sael.Connectivity.SharedPref;
 import dev.raghav.sael.Fragment.Support_fraggment;
@@ -36,6 +42,7 @@ public class Main2Activity extends AppCompatActivity
 
     TextView Nav_text_name,Nav_text_email;
     CircleImageView Profile_img;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +159,14 @@ public class Main2Activity extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {
 
+            if (Connectivity.isNetworkAvailable(Main2Activity.this)){
+                shareApplication();
+
+            }else {
+                Toast.makeText(Main2Activity.this, "No Internet", Toast.LENGTH_SHORT).show();
+
+            }
+
         } else if (id == R.id.nav_logout) {
             //            if (Connectivity.isNetworkAvailable(Main2Activity.this)){
 
@@ -193,6 +208,27 @@ public class Main2Activity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private String shareApplication() {
+
+        ApplicationInfo app = getApplicationContext().getApplicationInfo();
+        String filePath = app.sourceDir;
+
+        int lastDot = 0;
+        String packageName = app.packageName;
+        lastDot= packageName.lastIndexOf(".");
+        name = packageName.substring(lastDot + 1);
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("*/*");
+        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(filePath)));
+        startActivity(Intent.createChooser(intent, "Share app via"));
+
+        return name;
+
+
+
     }
 
 }
