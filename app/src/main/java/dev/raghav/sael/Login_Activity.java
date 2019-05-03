@@ -271,7 +271,7 @@ private  boolean checkAndRequestPermissions() {
                         startActivity(intent);
                         finish();
                         Toast.makeText(Login_Activity.this, "login success", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(Login_Activity.this, "ff" +SharedPref.getFirstname(Login_Activity.this), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Login_Activity.this, "ff" +SharedPref.getFirstname(Login_Activity.this), Toast.LENGTH_SHORT).show();
 
                     } else {
                         Toast.makeText(Login_Activity.this, "Invalid details login error", Toast.LENGTH_SHORT).show();

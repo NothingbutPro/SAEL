@@ -1,6 +1,8 @@
 package dev.raghav.sael.Fragment;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -262,13 +264,33 @@ public class fragment_start1 extends Fragment {
                     } else {
                         Toast.makeText(getContext(), "No Question Found", Toast.LENGTH_SHORT).show();
 
-
                         Fragment view_creat=new fragment_level();
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.content_frame,view_creat);
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
+
+                        final AlertDialog.Builder dialog = new AlertDialog.Builder(getContext()).setTitle("Learning English")
+                                .setMessage("No Question Found");
+
+                        dialog.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+
+//                        dialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int whichButton) {
+//                                //exitLauncher();
+//                            }
+
+                       // });
+                        final AlertDialog alert = dialog.create();
+                        alert.show();
+
 
 
                     }

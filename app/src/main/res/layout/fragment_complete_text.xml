@@ -87,7 +87,7 @@
                     android:id="@+id/button_homepage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Go to Home Page"
+                    android:text="Go to Exercise"
                     android:textAllCaps="false"
                     android:textAlignment="center"
                     android:background="@drawable/btn_shape"

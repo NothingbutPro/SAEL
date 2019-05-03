@@ -38,7 +38,7 @@ Button button_homepage;
         button_homepage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment view_creat=new fragment_text_home();
+                Fragment view_creat=new fragment_level();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.content_frame,view_creat);

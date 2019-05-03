@@ -114,7 +114,7 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.ViewHolder> 
 //                intent.putExtra("Level_Id",PID);
 //                context.startActivity(intent);
 
-                Toast.makeText(context, "level "+PID, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(context, "level "+PID, Toast.LENGTH_SHORT).show();
 
             }
         });
