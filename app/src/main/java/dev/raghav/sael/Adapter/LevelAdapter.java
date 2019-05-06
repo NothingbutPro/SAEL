@@ -108,13 +108,9 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.ViewHolder> 
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.content_frame,view_creat);
                 fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-//
-//                Intent intent = new Intent(context, Comment_View_Activity.class);
-//                intent.putExtra("Level_Id",PID);
-//                context.startActivity(intent);
 
-               // Toast.makeText(context, "level "+PID, Toast.LENGTH_SHORT).show();
+                fragmentTransaction.commit();
+
 
             }
         });

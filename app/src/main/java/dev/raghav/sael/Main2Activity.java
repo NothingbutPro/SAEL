@@ -36,6 +36,9 @@ import dev.raghav.sael.Fragment.Support_fraggment;
 import dev.raghav.sael.Fragment.fragment_level;
 import dev.raghav.sael.Fragment.fragment_text_home;
 
+import static dev.raghav.sael.Fragment.fragment_start1.intNext;
+import static dev.raghav.sael.Fragment.fragment_start1.link_level_question;
+
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     SessionManager manager;
@@ -101,6 +104,7 @@ public class Main2Activity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -141,9 +145,13 @@ public class Main2Activity extends AppCompatActivity
             FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
             tx.replace(R.id.content_frame, new fragment_text_home());
             tx.commit();
+            intNext =0;
+            link_level_question.clear();
 
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
+            intNext =0;
+            link_level_question.clear();
 
             FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
             tx.replace(R.id.content_frame, new fragment_level());
@@ -151,13 +159,19 @@ public class Main2Activity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_slideshow) {
+            intNext =0;
+            link_level_question.clear();
 
         } else if (id == R.id.nav_manage) {
             FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
             tx.replace(R.id.content_frame, new Support_fraggment());
             tx.commit();
+            intNext =0;
+            link_level_question.clear();
 
         } else if (id == R.id.nav_share) {
+            intNext =0;
+            link_level_question.clear();
 
             if (Connectivity.isNetworkAvailable(Main2Activity.this)){
                 shareApplication();
@@ -168,6 +182,8 @@ public class Main2Activity extends AppCompatActivity
             }
 
         } else if (id == R.id.nav_logout) {
+            intNext =0;
+            link_level_question.clear();
             //            if (Connectivity.isNetworkAvailable(Main2Activity.this)){
 
             final AlertDialog.Builder dialog = new AlertDialog.Builder(Main2Activity.this).setTitle("Learning English")
@@ -199,6 +215,8 @@ public class Main2Activity extends AppCompatActivity
             alert.show();
 
         }else if (id == R.id.nav_profile) {
+            intNext =0;
+            link_level_question.clear();
 
             Intent intent=new Intent(Main2Activity.this,Profile_Update.class);
             startActivity(intent);
@@ -230,5 +248,6 @@ public class Main2Activity extends AppCompatActivity
 
 
     }
+
 
 }
