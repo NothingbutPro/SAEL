@@ -235,7 +235,7 @@
                             android:textAlignment="center"
                             android:layout_width="match_parent"
                            android:layout_height="wrap_content"
-                            android:text="He (वह)"
+                            android:text="He (वो)"
                             android:textColor="#000"
                             android:textSize="14sp" />
 
@@ -309,7 +309,7 @@
                             android:textAlignment="center"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="You (आप)"
+                            android:text="You (तुम)"
                             android:textColor="#000"
                             android:textSize="14sp" />
 
@@ -630,7 +630,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="आपके पास बाइक है."
+                        android:text="तुम्हारे पास बाइक है."
                         android:textColor="#000"
                         android:textSize="14sp" />
 
@@ -831,7 +831,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="आपके पास बाइक थी."
+                        android:text="तुम्हारे पास बाइक थी."
                         android:textColor="#000"
                         android:textSize="14sp" />
 
@@ -1031,7 +1031,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="आपके पास बाइक होगी."
+                        android:text="तुम्हारे पास बाइक होगी."
                         android:textColor="#000"
                         android:textSize="14sp" />
 

@@ -29,6 +29,7 @@ import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -328,11 +329,30 @@ public class Profile_Update extends AppCompatActivity {
                     // String img = object.getString("img");
                     if (responce.equals("true")) {
 
-                        Toast.makeText(Profile_Update.this, "Success", Toast.LENGTH_LONG).show();
+                        JSONArray Data_array = object.getJSONArray("userdata");
+                        for (int i = 0; i < Data_array.length(); i++) {
+                            JSONObject data = Data_array.getJSONObject(i);
 
+                            String user_id = data.getString("user_id");
+                            String name = data.getString("name");
+                            String email = data.getString("email");
+                            String mobile = data.getString("mobile");
+                            String image = data.getString("image");
+
+                            SharedPref.setUserid(Profile_Update.this,user_id);
+                            SharedPref.setFirstname(Profile_Update.this,name);
+                            SharedPref.setEmail(Profile_Update.this,email);
+                            SharedPref.setProfileImage(Profile_Update.this,image);
+
+                            if (image!=null){
+                                Picasso.get().load("https://jntrcpl.com/staracademy/uploads/"+image)
+                                        .into(Profile_Update.this.profile_image);
+                            }
+                        }
+
+                        Toast.makeText(Profile_Update.this, "Success", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(Profile_Update.this,Main2Activity.class);
                         startActivity(intent);
-
                         finish();
 
 

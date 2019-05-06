@@ -49,7 +49,7 @@ public class fragment_start1 extends Fragment {
 
     Button btn_start2;
     Button button_check;
-    TextView tv_answer,tv_question;
+    TextView tv_answer,tv_question, tv_ques_no;
      String LEVEL_ID;
      EditText et_text;
     ArrayList<QuestionListModel> QuestionList=new ArrayList<>();
@@ -77,6 +77,7 @@ public class fragment_start1 extends Fragment {
         button_check=view.findViewById(R.id.button_check);
         tv_answer=view.findViewById(R.id.tv_answer);
         tv_question=view.findViewById(R.id.tv_question);
+        tv_ques_no=view.findViewById(R.id.ques_no);
         et_text=view.findViewById(R.id.et_text);
 
         Bundle b = getArguments();
@@ -86,11 +87,13 @@ public class fragment_start1 extends Fragment {
             int x = intNext +1;
            try {
                if(link_level_question.get(x).getQuestion().length() !=0) {
+                   tv_ques_no.setText("Question: "+link_level_question.get(intNext).getSr_no());
                    tv_question.setText(link_level_question.get(intNext).getQuestion());
                    tv_answer.setText(link_level_question.get(intNext).getAnswer());
                }
            }catch (Exception e1){
                btn_start2.setText("Complete");
+               tv_ques_no.setText("Question: "+link_level_question.get(intNext).getSr_no());
                tv_question.setText(link_level_question.get(intNext).getQuestion());
                tv_answer.setText(link_level_question.get(intNext).getAnswer());
            }
@@ -223,11 +226,10 @@ public class fragment_start1 extends Fragment {
 
                     JSONObject object = new JSONObject(result);
                     String res = object.getString("responce");
-                    JSONObject dataJsonObject = new JSONObject(result);
 
                     if (res.equals("true")) {
 
-                        JSONArray Data_array = dataJsonObject.getJSONArray("userdata");
+                        JSONArray Data_array = object.getJSONArray("userdata");
                         for (int i = 0; i < Data_array.length(); i++) {
                             JSONObject data = Data_array.getJSONObject(i);
 
@@ -235,9 +237,10 @@ public class fragment_start1 extends Fragment {
                             String question = data.getString("question");
                             String answer = data.getString("answer");
                             String level = data.getString("level");
+                            String sr_no = data.getString("sr_no");
 
-                            QuestionList.add(i, new QuestionListModel(q_id,question,answer,level));
-                            link_level_question.add( new QuestionListModel(q_id,question,answer,level));
+                            QuestionList.add(i, new QuestionListModel(q_id,question,answer,level,sr_no));
+                            link_level_question.add( new QuestionListModel(q_id,question,answer,level,sr_no));
 //                            if(i==0)
 //                            {
 //                            tv_question.setText(link_level_question.get(i).getQuestion());
@@ -249,11 +252,13 @@ public class fragment_start1 extends Fragment {
                         }
                         try {
                             if (link_level_question.get(intNext+1).getQuestion().length()!=0){
+                                tv_ques_no.setText("Question: "+link_level_question.get(intNext).getSr_no());
                                 tv_question.setText(link_level_question.get(intNext).getQuestion());
                                 tv_answer.setText(link_level_question.get(intNext).getAnswer());
                             }
                         }catch (Exception e){
                             btn_start2.setText("Complete");
+                            tv_ques_no.setText("Question: "+link_level_question.get(intNext).getSr_no());
                             tv_question.setText(link_level_question.get(intNext).getQuestion());
                             tv_answer.setText(link_level_question.get(intNext).getAnswer());
                         }

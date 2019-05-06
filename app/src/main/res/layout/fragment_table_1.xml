@@ -236,7 +236,7 @@
                             android:textAlignment="center"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="He (वह)"
+                            android:text="He (वो)"
                             android:textColor="#000"
                             android:textSize="14sp" />
 
@@ -310,7 +310,7 @@
                             android:textAlignment="center"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="You (आप)"
+                            android:text="You (तुम)"
                             android:textColor="#000"
                             android:textSize="14sp" />
 
@@ -631,7 +631,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="वह शिक्षक है."
+                        android:text="वो शिक्षक है."
                         android:textColor="#000"
                         android:textSize="14sp" />
 
@@ -691,7 +691,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="आप अध्यापक हैं."
+                        android:text="तुम शिक्षक हैं."
                         android:textColor="#000"
                         android:textSize="14sp" />
 
@@ -832,7 +832,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="वह शिक्षक था."
+                        android:text="वो शिक्षक था."
                         android:textColor="#000"
                         android:textSize="14sp" />
 
@@ -892,7 +892,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="आप शिक्षक थे."
+                        android:text="तुम शिक्षक थे."
                         android:textColor="#000"
                         android:textSize="14sp" />
 
@@ -988,7 +988,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="I will be teacher."
+                        android:text="I will be a teacher."
                         android:textColor="#000"
                         android:textSize="14sp" />
 
@@ -1032,7 +1032,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="वह शिक्षक बनेगा."
+                        android:text="वो शिक्षक बनेगा."
                         android:textColor="#000"
                         android:textSize="14sp" />
 
@@ -1048,7 +1048,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="he will be teacher."
+                        android:text="he will be a teacher."
                         android:textColor="#000"
                         android:textSize="14sp" />
 
@@ -1092,7 +1092,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="तुम टीचर बनोगे."
+                        android:text="तुम शिक्षक बनोगे."
                         android:textColor="#000"
                         android:textSize="14sp" />
 

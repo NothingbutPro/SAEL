@@ -61,6 +61,73 @@
     </LinearLayout>
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:weightSum="1"
+            >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_weight="0.5"
+            >
+            <TextView
+                android:textAlignment="textStart"
+                android:layout_gravity="start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mob: 7304027757"
+                android:textColor="@color/colorPrimary"
+                />
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="1"
+                >
+
+            <TextView
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="आपका"
+                android:textColor="@color/colorPrimary"
+                android:layout_weight="0.33"
+                />
+
+                <TextView
+                    android:layout_weight="0.33"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="पृथ्वीराज सर"
+                    android:textColor="@color/colorPrimary"
+                    />
+
+                <TextView
+                    android:layout_weight="0.33"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="स्टार एकेडेमी फॉर लर्निंग इंग्लिश "
+                    android:textColor="@color/colorPrimary"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

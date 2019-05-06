@@ -68,6 +68,7 @@
 
         >
         <TextView
+            android:id="@+id/ques_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Question:"

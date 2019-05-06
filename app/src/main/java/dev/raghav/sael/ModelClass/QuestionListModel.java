@@ -6,19 +6,29 @@ public class QuestionListModel {
     private String question;
     private String answer;
     private String level;
+    private String sr_no;
 
 
-    public QuestionListModel(String q_id, String question, String answer, String level) {
+    public QuestionListModel(String q_id, String question, String answer, String level, String sr_no) {
     this.q_id=q_id;
     this.question=question;
     this.answer=answer;
     this.level=level;
+    this.sr_no=sr_no;
 
 
     }
 
     public String getAnswer() {
         return answer;
+    }
+
+    public String getSr_no() {
+        return sr_no;
+    }
+
+    public void setSr_no(String sr_no) {
+        this.sr_no = sr_no;
     }
 
     public String getLevel() {
