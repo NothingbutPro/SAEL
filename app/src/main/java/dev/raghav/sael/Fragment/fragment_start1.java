@@ -132,7 +132,7 @@ public class fragment_start1 extends Fragment {
                  FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                  FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                  fragmentTransaction.replace(R.id.content_frame,view_creat);
-                 //fragmentTransaction.addToBackStack(null);
+                 fragmentTransaction.addToBackStack(null);
 
                  fragmentTransaction.commit();
 

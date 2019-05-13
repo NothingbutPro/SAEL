@@ -174,7 +174,19 @@ public class Main2Activity extends AppCompatActivity
             link_level_question.clear();
 
             if (Connectivity.isNetworkAvailable(Main2Activity.this)){
-                shareApplication();
+                //shareApplication();
+
+                try {
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
+                    String shareMessage= "\nLet me recommend you this application\n\n";
+                    shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                    startActivity(Intent.createChooser(shareIntent, "choose one"));
+                } catch(Exception e) {
+                    //e.toString();
+                }
 
             }else {
                 Toast.makeText(Main2Activity.this, "No Internet", Toast.LENGTH_SHORT).show();
@@ -228,26 +240,28 @@ public class Main2Activity extends AppCompatActivity
         return true;
     }
 
-    private String shareApplication() {
+   // private String shareApplication() {
 
-        ApplicationInfo app = getApplicationContext().getApplicationInfo();
-        String filePath = app.sourceDir;
+//        ApplicationInfo app = getApplicationContext().getApplicationInfo();
+//        String filePath = app.sourceDir;
+//
+//        int lastDot = 0;
+//        String packageName = app.packageName;
+//        lastDot= packageName.lastIndexOf(".");
+//        name = packageName.substring(lastDot + 1);
+//
+//        Intent intent = new Intent(Intent.ACTION_SEND);
+//        intent.setType("*/*");
+//        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(filePath)));
+//        startActivity(Intent.createChooser(intent, "Share app via"));
+//
+//        return name;
 
-        int lastDot = 0;
-        String packageName = app.packageName;
-        lastDot= packageName.lastIndexOf(".");
-        name = packageName.substring(lastDot + 1);
-
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("*/*");
-        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(filePath)));
-        startActivity(Intent.createChooser(intent, "Share app via"));
-
-        return name;
 
 
 
-    }
+
+   // }
 
 
 }
