@@ -43,10 +43,10 @@ public class fragment_text_home extends Fragment {
 
                 Fragment view_creat=new fragment_level();
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+              //  fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.content_frame,view_creat);
-              //  fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
 

@@ -116,8 +116,10 @@ public class Main2Activity extends AppCompatActivity
                 intNext=0;
 
             }else {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Main2Activity.this);
-                builder.setPositiveButton("Are you sure want to exit", new DialogInterface.OnClickListener() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Main2Activity.this).setTitle("Learning English").
+                setMessage("Are you sure, you want to Leave this Exercise");
+
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         link_level_question.clear();
@@ -131,6 +133,7 @@ public class Main2Activity extends AppCompatActivity
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
 
                     }
                 });
