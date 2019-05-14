@@ -42,7 +42,7 @@ Button button_homepage;
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.content_frame,view_creat);
-               // fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });

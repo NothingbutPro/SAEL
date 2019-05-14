@@ -165,14 +165,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_marginTop="100dp"
-
         android:layout_gravity="bottom"
         android:gravity="bottom"
+        android:weightSum="1"
         >
         <Button
+            android:layout_weight="0.5"
+            android:id="@+id/button_prev"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Previous"
+            android:textAllCaps="false"
+            android:textAlignment="center"
+            android:background="@drawable/btn_shape"
+            android:textColor="#fff"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            />
+
+        <Button
             android:id="@+id/button_start"
+            android:layout_weight="0.5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Next"

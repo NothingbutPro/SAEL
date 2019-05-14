@@ -109,6 +109,7 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.ViewHolder> 
                 fragmentTransaction.replace(R.id.content_frame,view_creat);
                 fragmentTransaction.addToBackStack(null);
 
+
                 fragmentTransaction.commit();
 
 

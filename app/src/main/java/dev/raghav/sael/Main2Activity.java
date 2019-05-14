@@ -109,7 +109,50 @@ public class Main2Activity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+
+            if(intNext==0)
+            {
+                link_level_question.clear();
+                intNext=0;
+
+            }else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Main2Activity.this);
+                builder.setPositiveButton("Are you sure want to exit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        link_level_question.clear();
+                        intNext=0;
+                        finish();
+                        Intent intent = new Intent(Main2Activity.this , Main2Activity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+                alertDialog.setCancelable(true);
+            }
             super.onBackPressed();
+//            if(!link_level_question.isEmpty())
+//            {
+//                intNext=0;
+//                link_level_question.clear();
+//            }else {
+//                Toast.makeText(this, "back pressed", Toast.LENGTH_SHORT).show();
+//            }
+//            intNext=0;
+////            if (link_level_question.isEmpty()){
+////                Toast.makeText(this, "levellll", Toast.LENGTH_SHORT).show();
+////            }else {
+////                link_level_question.clear();
+////            }
+//            link_level_question.clear();
         }
     }
 
@@ -258,7 +301,7 @@ public class Main2Activity extends AppCompatActivity
 //        return name;
 
 
-
+// star.academy181@gmail.com
 
 
    // }

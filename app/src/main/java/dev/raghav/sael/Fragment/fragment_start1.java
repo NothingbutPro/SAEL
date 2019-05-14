@@ -47,7 +47,7 @@ import dev.raghav.sael.R;
 
 public class fragment_start1 extends Fragment {
 
-    Button btn_start2;
+    Button btn_start2,button_prev;
     Button button_check;
     TextView tv_answer,tv_question, tv_ques_no;
      String LEVEL_ID;
@@ -74,6 +74,7 @@ public class fragment_start1 extends Fragment {
         getActivity().setTitle("Learning English");
 
         btn_start2=view.findViewById(R.id.button_start);
+        button_prev=view.findViewById(R.id.button_prev);
         button_check=view.findViewById(R.id.button_check);
         tv_answer=view.findViewById(R.id.tv_answer);
         tv_question=view.findViewById(R.id.tv_question);
@@ -93,15 +94,30 @@ public class fragment_start1 extends Fragment {
                }
            }catch (Exception e1){
                btn_start2.setText("Complete");
-               tv_ques_no.setText("Question: "+link_level_question.get(intNext).getSr_no());
-               tv_question.setText(link_level_question.get(intNext).getQuestion());
-               tv_answer.setText(link_level_question.get(intNext).getAnswer());
-              // intNext =0;
+               try {
+                   tv_ques_no.setText("Question: "+link_level_question.get(intNext).getSr_no());
+                   tv_question.setText(link_level_question.get(intNext).getQuestion());
+                   tv_answer.setText(link_level_question.get(intNext).getAnswer());
+
+               }catch (Exception Ex)
+               {
+                    getActivity().finish();
+                   Intent intent = new Intent(getActivity() , Main2Activity.class);
+                   startActivity(intent);
+                   getActivity().finish();
+
+                  Ex.printStackTrace();
+               }
+                            // intNext =0;
            }
 
         }
 
-       // Toast.makeText(getContext(), "bb "+LEVEL_ID, Toast.LENGTH_SHORT).show();
+     if (intNext==0){
+         button_prev.setVisibility(View.INVISIBLE);
+     }else {
+         button_prev.setVisibility(View.VISIBLE);
+     }
 
         if (Connectivity.isNetworkAvailable(view.getContext())){
             if(intNext == 0) {
@@ -122,7 +138,7 @@ public class fragment_start1 extends Fragment {
                  FragmentManager fragmentManager = getFragmentManager();
                  FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                  fragmentTransaction.replace(R.id.content_frame,view_creat);
-                // fragmentTransaction.addToBackStack(null);
+                 fragmentTransaction.addToBackStack(null);
                  fragmentTransaction.commit();
                  intNext =0;
                  link_level_question.clear();
@@ -141,6 +157,22 @@ public class fragment_start1 extends Fragment {
 
             }
         });
+        //**************************************************************
+        button_prev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intNext--;
+                Fragment view_creat=new fragment_start1();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame,view_creat);
+                // fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+
+        });
+        //******************************************************
 
         button_check.setOnClickListener(new View.OnClickListener() {
             @Override
