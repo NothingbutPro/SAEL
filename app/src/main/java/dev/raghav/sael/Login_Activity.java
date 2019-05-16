@@ -194,7 +194,9 @@ private  boolean checkAndRequestPermissions() {
         protected String doInBackground(String... params) {
             try {
 
-                URL url = new URL("https://jntrcpl.com/staracademy/Api/user_login");
+               // URL url = new URL("http://infocentroid.us/Star_Academy/Api/user_login");
+                URL url = new URL("http://infocentroid.us/Star_Academy/Api/user_login");
+                // http://infocentroid.us/Star_Academy
 
                 JSONObject postDataParams = new JSONObject();
                 postDataParams.put("username",Et_Email);

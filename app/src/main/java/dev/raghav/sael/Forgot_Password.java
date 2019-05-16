@@ -81,7 +81,7 @@ public class Forgot_Password extends AppCompatActivity {
         protected String doInBackground(String... params) {
             try {
 
-                URL url = new URL("https://jntrcpl.com/staracademy/Api/forget_password");
+                URL url = new URL("http://infocentroid.us/Star_Academy/Api/forget_password");
 
                 JSONObject postDataParams = new JSONObject();
                 postDataParams.put("email",Et_Forget);

@@ -84,7 +84,7 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.ViewHolder> 
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
         final LevelListModel levelListModel = LevelList.get(position);
 
-        Toast.makeText(context, "pos "+position, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(context, "pos "+position, Toast.LENGTH_SHORT).show();
 
         if (position==0 || position==1 || position==2){
 

@@ -101,7 +101,7 @@ public class fragment_level extends Fragment {
         protected String doInBackground(String... params) {
 
             try {
-                server_url = "https://jntrcpl.com/staracademy/Api/get_level";
+                server_url = "http://infocentroid.us/Star_Academy/Api/get_level";
 
 
             } catch (Exception e) {

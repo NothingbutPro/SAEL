@@ -211,7 +211,7 @@ public class fragment_start1 extends Fragment {
         protected String doInBackground(String... params) {
             try {
 
-                URL url = new URL("https://jntrcpl.com/staracademy/Api/get_question");
+                URL url = new URL("http://infocentroid.us/Star_Academy/Api/get_question");
 
                 JSONObject postDataParams = new JSONObject();
                 postDataParams.put("level",LEVEL_ID);

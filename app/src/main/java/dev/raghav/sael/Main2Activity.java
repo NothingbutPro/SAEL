@@ -91,7 +91,7 @@ public class Main2Activity extends AppCompatActivity
         if (SharedPref.getProfileImage(Main2Activity.this).length()!=0)
         {
             Picasso.get()
-                    .load("https://jntrcpl.com/staracademy/uploads/"+SharedPref.getProfileImage(Main2Activity.this))
+                    .load("http://infocentroid.us/Star_Academy/uploads/"+SharedPref.getProfileImage(Main2Activity.this))
                     .into(Main2Activity.this.Profile_img);
         }
         else {

@@ -303,7 +303,7 @@ public class Profile_Update extends AppCompatActivity {
                 entity.addPart("email",new StringBody(Et_Email));
                 entity.addPart("user_id",new StringBody(id));
 
-                result = Utilities.postEntityAndFindJson("https://jntrcpl.com/staracademy/Api/profile_update", entity);
+                result = Utilities.postEntityAndFindJson("http://infocentroid.us/Star_Academy/Api/profile_update", entity);
 
                 return result;
 
@@ -345,7 +345,7 @@ public class Profile_Update extends AppCompatActivity {
                             SharedPref.setProfileImage(Profile_Update.this,image);
 
                             if (image!=null){
-                                Picasso.get().load("https://jntrcpl.com/staracademy/uploads/"+image)
+                                Picasso.get().load("http://infocentroid.us/Star_Academy/uploads/"+image)
                                         .into(Profile_Update.this.profile_image);
                             }
                         }
@@ -388,7 +388,7 @@ public class Profile_Update extends AppCompatActivity {
         protected String doInBackground(String... params) {
             try {
                 String id= SharedPref.getUserid(Profile_Update.this);
-                URL url = new URL("https://jntrcpl.com/staracademy/Api/user_detail");
+                URL url = new URL("http://infocentroid.us/Star_Academy/Api/user_detail");
 
                 JSONObject postDataParams = new JSONObject();
                 postDataParams.put("user_id",id);
@@ -460,7 +460,7 @@ public class Profile_Update extends AppCompatActivity {
                         et_pass.setText(show_password);
 
                         if (image!=null){
-                            Picasso.get().load("https://jntrcpl.com/staracademy/uploads/"+image)
+                            Picasso.get().load("http://infocentroid.us/Star_Academy/uploads/"+image)
                     .into(Profile_Update.this.profile_image);
                         }
 //                        else {
