@@ -84,8 +84,24 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.ViewHolder> 
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
         final LevelListModel levelListModel = LevelList.get(position);
 
-        viewHolder.txt1.setText("Exercise "+levelListModel.getM_name());
+        Toast.makeText(context, "pos "+position, Toast.LENGTH_SHORT).show();
 
+        if (position==0 || position==1 || position==2){
+
+            if (position==0){
+                viewHolder.txt1.setText("Exercise "+levelListModel.getM_name()+" (Table 1)");
+            }
+            if (position==1){
+                viewHolder.txt1.setText("Exercise "+levelListModel.getM_name()+" (Table 2)");
+            }
+            if (position==2){
+            viewHolder.txt1.setText("Exercise "+levelListModel.getM_name()+" (Table 1 & 2)");
+             }
+        }
+
+        else {
+            viewHolder.txt1.setText("Exercise "+levelListModel.getM_name());
+        }
 
         viewHolder.cardeview.setTag(viewHolder);
         viewHolder.pos = position;
