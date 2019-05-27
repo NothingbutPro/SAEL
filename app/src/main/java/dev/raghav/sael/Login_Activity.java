@@ -142,6 +142,7 @@ public class Login_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(Login_Activity.this,Registration_Activity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

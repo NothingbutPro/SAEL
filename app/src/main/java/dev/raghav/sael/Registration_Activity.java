@@ -198,7 +198,7 @@ public class Registration_Activity extends AppCompatActivity {
                 dialog.dismiss();
 
                 try {
-                    //  Toast.makeText(LoginActivity.this, "result is" + result, Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(Registration_Activity.this, "result is" + result, Toast.LENGTH_SHORT).show();
 
                     JSONObject object = new JSONObject(result);
                     String res = object.getString("responce");
