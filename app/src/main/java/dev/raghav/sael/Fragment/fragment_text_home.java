@@ -16,7 +16,7 @@ import dev.raghav.sael.Registration_Activity;
 
 public class fragment_text_home extends Fragment {
 
-    Button btn_start, table_1,table_2;
+    Button btn_start, table_1,table_2,table_3;
 
     @Nullable
     @Override
@@ -36,6 +36,7 @@ public class fragment_text_home extends Fragment {
         btn_start=view.findViewById(R.id.button_start);
         table_1=view.findViewById(R.id.table_1);
         table_2=view.findViewById(R.id.table_2);
+        table_3=view.findViewById(R.id.table_3);
 
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +70,20 @@ public class fragment_text_home extends Fragment {
             @Override
             public void onClick(View v) {
                 Fragment view_creat=new fragment_table2();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame,view_creat);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+
+            }
+        });
+
+ table_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment view_creat=new fragment_table3();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.content_frame,view_creat);
